@@ -1,10 +1,6 @@
-# Create tournament
-# Create name
-# A venue
-# A start and end date
-# A list of registered players
-# A number of rounds
-# A number corresponding to the current round being played
+import json
+
+from .player import Player
 
 class Tournament:
     """A local tournament"""
@@ -17,3 +13,27 @@ class Tournament:
         self.round_number = round_number
         self.current_round = 0
         self.filepath = filepath
+
+        # Load File
+        if filepath and not name:
+            with open(filepath) as fp:
+                data = json.load(fp)
+                self.name = data["name"]
+                self.players = [
+                    Player(**player_dict) for player_dict in data["players"]
+                ]
+        elif not filepath:
+            self.save()
+    # Save file
+    def save(self):
+        """Serialize the players and save them to the tournament into a JSON file"""
+
+        with open(self.filepath, "w") as fp:
+            json.dump(
+                {"name": self.name, "players": [p.serialize() for p in self.players]},
+                fp,
+            )
+            
+# Don't need to finish the whole class to go to the next class
+# Think about how to add one feature at a time
+# see how the project handles the clubs and the players for making the tournament
