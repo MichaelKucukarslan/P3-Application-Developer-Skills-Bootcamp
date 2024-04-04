@@ -1,2 +1,2 @@
-from .create import PlayerEdit
-from .view import PlayerView
+from .create import TournamentEdit
+from .view import TournamentView

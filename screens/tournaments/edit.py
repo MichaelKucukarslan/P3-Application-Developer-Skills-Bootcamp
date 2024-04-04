@@ -1,4 +1,4 @@
-from commands import TournamentCreateCmd
+from commands import TournamentEditCmd
 
 from ..base_screen import BaseScreen
 
