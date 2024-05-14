@@ -10,3 +10,7 @@ class TournamentView(BaseScreen):
 
     def display(self):
         print("Worked")
+
+    def get_command(self):
+        """Child classes must implement this method. It must return a Command."""
+    pass

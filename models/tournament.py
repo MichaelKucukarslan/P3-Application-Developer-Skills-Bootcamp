@@ -4,7 +4,8 @@ from .player import Player
 
 class Tournament:
     """A local tournament"""
-    def __init__(self, name, venue, start_date, end_date, players, round_number, filepath):
+    def __init__(self, filepath=None, name=None, venue=None, start_date=None, end_date=None, players=None, round_number=None):
+        self.filepath = filepath
         self.name = name
         self.venue = venue
         self.start_date = start_date
@@ -12,7 +13,6 @@ class Tournament:
         self.players = players
         self.round_number = round_number
         self.current_round = 0
-        self.filepath = filepath
 
         # Load File
         if filepath and not name:

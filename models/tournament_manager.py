@@ -1,17 +1,26 @@
 import json
 from pathlib import Path
 
-from .club import ChessClub
+from .tournament import Tournament
+
 
 class TournamentManager:
     def __init__(self, data_folder="data/tournaments"):
-        self.data_folder=data_folder
+        print("Tournament Manager")
+        datadir = Path(data_folder)
+        self.data_folder=datadir
+        self.tournaments = []
+        for filepath in datadir.iterdir():
+            if filepath.is_file() and filepath.suffix == ".json":
+                try:
+                    self.tournaments.append(Tournament(filepath))
+                except json.JSONDecodeError:
+                    print(filepath, "is invalid JSON file.")
     
-    """Trying to get this to work"""
     def create(self, name):
         filepath = self.data_folder / (name.replace(" ", "") + ".json")
-        club = ChessClub(name=name, filepath=filepath)
-        club.save()
+        tournament = Tournament(name=name, filepath=filepath)
+        tournament.save()
 
-        self.clubs.append(club)
-        return club
+        self.tournaments.append(tournament)
+        return tournament

@@ -2,20 +2,27 @@ from commands import ExitCmd, NoopCmd
 
 from .base_screen import BaseScreen
 
+
 class TournamentMenu(BaseScreen):
     """Tournament Menu Screen"""
 
-    def __init__(self) -> None:
-        print("Tournament Menu")
-        pass
+    def __init__(self, tournaments):
+        self.tournaments = tournaments
+
+    def display(self):
+        print("**Tournament Menu**")
+        for idx, tournament in enumerate(self.tournaments, 1):
+            print(idx, tournament.name)
     
     def get_command(self):
         while True:
             # view all tournament
             # create a new tournament
             # ask user for input
-            print("Type C to create a tournaments or create a new tournament.")
+            print("Type a number to access a current tournament.")
+            print("Type C to create a new tournament.")
             print("Type B to go back.")
+            print("Type X to exit.")
             value = self.input_string()
             if value.isdigit():
                 value = int(value)

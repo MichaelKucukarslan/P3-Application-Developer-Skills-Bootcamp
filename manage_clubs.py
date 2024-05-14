@@ -1,4 +1,4 @@
-from commands import ClubListCmd
+from commands import ClubListCmd, TournamentListCmd
 from screens import ClubCreate, ClubView, MainMenu, PlayerEdit, PlayerView, TournamentView, TournamentMenu
 
 
@@ -11,6 +11,7 @@ class App:
         "club-view": ClubView,
         "tournament-view": TournamentView,
         "tournament-menu": TournamentMenu,
+        "tournament-list": TournamentListCmd,
         "player-view": PlayerView,
         "player-edit": PlayerEdit,
         "player-create": PlayerEdit,
