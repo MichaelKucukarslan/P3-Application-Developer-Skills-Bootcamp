@@ -1,0 +1,4 @@
+[ ] Show tournaments
+[ ] Set Up a tournament 
+[ ] Add players to said tournament
+[ ] Make a list of all the players then give them numbers to add to tournament (Maybe)

@@ -27,8 +27,7 @@ class MainMenu(BaseScreen):
             elif value.upper() == "C":
                 return NoopCmd("club-create")
             elif value.upper() == "T":
-                command = ClubListCmd()
-                self.context = command()
+                pass
                 # return NoopCmd("tournament-list")
             elif value.upper() == "X":
                 return ExitCmd()
