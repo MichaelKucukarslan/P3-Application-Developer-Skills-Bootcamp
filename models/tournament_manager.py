@@ -1,5 +1,4 @@
 import json
-from pathlib import Path
 
 from .tournament import Tournament
 
@@ -16,11 +15,17 @@ class TournamentManager:
     def load_json_into_tournaments(self, file_name):
         with open(file_name, 'r') as file:
             data = json.load(file)
-            tournament = Tournament(data['name'], data['venue'], data['dates']['from'], data['dates']['to'], data['players'], data['rounds'])
+            tournament = Tournament(data['name'], data['dates']['from'], data['dates']['to'], 
+                                    data['venue'], data['number_of_rounds'], data['current_round'],
+                                    data['completed'], data['players'],data['finished'], 
+                                    data['rounds'])
             self.tournaments.append(tournament)
     
     def get_tournaments(self):
         return self.tournaments
+    
+    def get_tournament(self, tournament_number):
+        return self.tournaments[tournament_number]
     
     def create(self, name):
         filepath = self.data_folder / (name.replace(" ", "") + ".json")

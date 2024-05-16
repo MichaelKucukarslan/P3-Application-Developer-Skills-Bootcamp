@@ -1,5 +1,3 @@
-from commands import TournamentEditCmd
-
 from ..base_screen import BaseScreen
 
 from datetime import datetime
@@ -24,4 +22,4 @@ class TournamentEdit(BaseScreen):
         end_date = datetime(year, month, day)
         # Adding players is done in the next view
         # Calculating rounds is done after players have been entered
-        return TournamentCreateCmd(name, venue, start_date, end_date)
+

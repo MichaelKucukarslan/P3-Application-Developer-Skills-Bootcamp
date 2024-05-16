@@ -1,5 +1,6 @@
 from commands import ExitCmd, NoopCmd
 from models import TournamentManager
+from .tournaments.view import TournamentView
 from .base_screen import BaseScreen
 
 
@@ -19,7 +20,7 @@ class TournamentMenu(BaseScreen):
         keep_asking = True
         while keep_asking:
             print("")
-            # view all tournament
+            # view a tournament
             # create a new tournament
             # ask user for input
             print("Type a number to access a current tournament.")
@@ -28,9 +29,10 @@ class TournamentMenu(BaseScreen):
             value = self.input_string()
             if value.isdigit():
                 value = int(value)
-                print(value)
-                if value in range(1, len(self.tournaments) + 1):
-                    return NoopCmd("club-view", club=self.clubs[value - 1])
+                if value in range(1, len(self.tournament_manager.get_tournaments()) + 1):
+                    view = TournamentView(self.tournament_manager.get_tournament(value - 1))
+                    view.display()
+                    pass
             elif value.upper() == "C":
                 return NoopCmd("tournament-menu")
             elif value.upper() == "B":

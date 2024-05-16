@@ -4,7 +4,7 @@ from ..base_screen import BaseScreen
 
 from datetime import datetime
 
-class TournamentEdit(BaseScreen):
+class TournamentCreate(BaseScreen):
     """Screen displayed when creating a club"""
 
     display = "## Create tournament"
