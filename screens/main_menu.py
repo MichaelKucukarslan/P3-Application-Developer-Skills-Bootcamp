@@ -27,10 +27,7 @@ class MainMenu(BaseScreen):
             elif value.upper() == "C":
                 return NoopCmd("club-create")
             elif value.upper() == "T":
-                tournament_manager = TournamentsMenu()
-                tournament_manager.display()
-                tournament_manager.get_command()
-                pass
-                # return NoopCmd("tournament-list")
+                tournaments_manager = TournamentsMenu()
+                tournaments_manager.get_command()
             elif value.upper() == "X":
                 return ExitCmd()

@@ -5,7 +5,6 @@ from .tournament import Tournament
 
 class TournamentsManager:
     def __init__(self, data_folder="data/tournaments"):
-        print("Tournament Manager")
         self.tournaments = []
         self.file_in_progress = data_folder + "/in-progress.json"
         self.file_future_tournaments = data_folder + "/completed.json"

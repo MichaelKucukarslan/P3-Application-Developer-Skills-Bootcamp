@@ -1,0 +1,2 @@
+class TournamentManager:
+    pass
