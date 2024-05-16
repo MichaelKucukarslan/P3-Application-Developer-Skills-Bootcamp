@@ -1,5 +1,5 @@
 from commands import ExitCmd, NoopCmd
-from .tournament_menu import TournamentMenu
+from .tournaments_menu import TournamentsMenu
 from .base_screen import BaseScreen
 
 
@@ -27,7 +27,7 @@ class MainMenu(BaseScreen):
             elif value.upper() == "C":
                 return NoopCmd("club-create")
             elif value.upper() == "T":
-                tournament_manager = TournamentMenu()
+                tournament_manager = TournamentsMenu()
                 tournament_manager.display()
                 tournament_manager.get_command()
                 pass

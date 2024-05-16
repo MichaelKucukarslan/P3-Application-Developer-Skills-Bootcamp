@@ -1,15 +1,15 @@
 from commands import ExitCmd, NoopCmd
-from models import TournamentManager
+from models import TournamentsManager
 from .tournaments.view import TournamentView
 from .base_screen import BaseScreen
 
 
-class TournamentMenu(BaseScreen):
+class TournamentsMenu(BaseScreen):
     """Tournament Menu Screen"""
 
     def __init__(self, data_folder="data/tournaments"):
         # Load all tournaments into a list
-        self.tournament_manager = TournamentManager()
+        self.tournament_manager = TournamentsManager()
 
     def display(self):
         print("**Tournament Menu**")

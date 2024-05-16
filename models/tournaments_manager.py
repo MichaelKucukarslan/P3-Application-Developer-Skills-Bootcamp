@@ -3,7 +3,7 @@ import json
 from .tournament import Tournament
 
 
-class TournamentManager:
+class TournamentsManager:
     def __init__(self, data_folder="data/tournaments"):
         print("Tournament Manager")
         self.tournaments = []

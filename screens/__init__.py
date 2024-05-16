@@ -2,7 +2,7 @@ from .clubs import ClubCreate, ClubView
 from .main_menu import MainMenu
 from .players import PlayerEdit, PlayerView
 from .tournaments import TournamentView
-from .tournament_menu import TournamentMenu 
+from .tournaments_menu import TournamentsMenu 
 
 
-__all__ = ["ClubCreate", "ClubView", "MainMenu", "PlayerView", "TournamentView", "TournamentMenu"]
+__all__ = ["ClubCreate", "ClubView", "MainMenu", "PlayerView", "TournamentView", "TournamentsMenu"]
