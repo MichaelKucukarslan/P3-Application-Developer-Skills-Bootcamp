@@ -13,16 +13,6 @@ class Tournament:
         self.round_number = round_number
         self.current_round = 0
 
-        # Load File
-        # if filepath and not name:
-        #     with open(filepath) as fp:
-        #         data = json.load(fp)
-        #         self.name = data["name"]
-        #         self.players = [
-        #             Player(**player_dict) for player_dict in data["players"]
-        #         ]
-        # elif not filepath:
-        #     self.save()
     # Save file
     def save(self):
         """Serialize the players and save them to the tournament into a JSON file"""
