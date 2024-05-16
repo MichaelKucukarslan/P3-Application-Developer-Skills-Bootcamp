@@ -31,6 +31,11 @@ The players can now be ranked:
 | Player 2 | 0      |
 | Player 4 | 0      |
 
+Who won?
+1 player 1 
+2 player 2 
+3 or draw
+
 ### Following rounds
 
 Sort the players by their tournament points (descending), and pair players in order (#1 with #2, #3 with #4, etc).

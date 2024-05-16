@@ -8,3 +8,5 @@ class TournamentMenu:
     def display(self):
         self.tournament.display()
         
+    # [ ] Add editing ability
+    
