@@ -1,5 +1,3 @@
-from commands import NoopCmd
-
 from ..base_screen import BaseScreen
 
 class TournamentView(BaseScreen):
@@ -15,8 +13,8 @@ class TournamentView(BaseScreen):
         print("Start Date: " + self.tournament.start_date)
         print("End Date: " + self.tournament.end_date)
         print("Player ID Numbers:")
-        for i in self.tournament.players:
-            print(f"\t{i}")
+        for player in self.tournament.players:
+            print(f"\tID: {player} \tName:")
         print("Current Round: " + str(self.tournament.current_round))
         
 

@@ -1,5 +1,6 @@
 from commands import ExitCmd, NoopCmd
 from models import TournamentsManager
+from models.player_manager import PlayerManager
 from .tournaments.view import TournamentView
 from .tournament_menu import TournamentMenu
 from .base_screen import BaseScreen
@@ -15,20 +16,20 @@ class TournamentsMenu(BaseScreen):
     def __init__(self, data_folder="data/tournaments"):
         # Load all tournaments into a list
         self.tournament_manager = TournamentsManager()
+        # Load all players into a list
+        self.player_manager = PlayerManager()
 
     def display(self):
         for idx, tournament in enumerate(self.tournament_manager.get_tournaments(), 1):
             print(idx, tournament.name)
-    
+
     def get_command(self):
         keep_asking = True
         while keep_asking:
             print("**Tournaments Menu**")
             self.display()
             print("")
-            # view a tournament
-            # create a new tournament
-            # ask user for input
+
             print("Type a number to access a current tournament.")
             print("Type C to create a new tournament.")
             print("Type B to go back.")
