@@ -20,8 +20,6 @@ class Tournament:
         self.players = players
         self.finished = finished
         self.rounds = rounds
-            
-        # self.current_round = 0
 
     # Save file
     def save(self):
@@ -32,7 +30,3 @@ class Tournament:
                 {"name": self.name, "players": [p.serialize() for p in self.players]},
                 fp,
             )
-            
-# Don't need to finish the whole class to go to the next class
-# Think about how to add one feature at a time
-# see how the project handles the clubs and the players for making the tournament
