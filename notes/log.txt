@@ -1,0 +1,5 @@
+Next steps:
+Load tournament with player names
+
+5-19-24
+Loaded all players into a player manager
