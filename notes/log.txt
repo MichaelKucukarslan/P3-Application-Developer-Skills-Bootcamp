@@ -1,4 +1,7 @@
 Next steps:
+Show Tournament Standings
+
+5-20-24
 Load tournament with player names
 
 5-19-24
