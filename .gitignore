@@ -128,3 +128,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Flake 8
+/flake-report
+
+# Assessment Files
+/assessment_files
