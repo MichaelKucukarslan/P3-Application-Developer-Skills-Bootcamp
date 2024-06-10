@@ -2,7 +2,6 @@ import json
 
 from .tournament import Tournament
 from models.players_manager import PlayersManager
-from models.player import Player
 
 class TournamentsManager:
     def __init__(self, data_folder="data/tournaments"):
@@ -12,7 +11,7 @@ class TournamentsManager:
         self.file_future_tournaments = data_folder + "/completed.json"
         self.load_json_into_tournaments(self.file_in_progress)
         self.load_json_into_tournaments(self.file_future_tournaments)
-        
+
     def load_json_into_tournaments(self, file_name):
         with open(file_name, 'r') as file:
             data = json.load(file)
@@ -26,13 +25,13 @@ class TournamentsManager:
                                     data['completed'], tournament_players ,data['finished'], 
                                     data['rounds'])
             self.tournaments.append(tournament)
-    
+
     def get_tournaments(self):
         return self.tournaments
-    
+
     def get_tournament(self, tournament_number):
         return self.tournaments[tournament_number]
-    
+
     def create(self, name):
         filepath = self.data_folder / (name.replace(" ", "") + ".json")
         tournament = Tournament(name=name, filepath=filepath)
