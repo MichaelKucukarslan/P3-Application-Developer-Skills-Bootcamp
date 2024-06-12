@@ -8,6 +8,25 @@ class TournamentView(BaseScreen):
         self.tournament = tournament
         pass
 
+    def print_rounds(self):
+        data = []
+        for round_index, round_data in enumerate(self.tournament.rounds, start=1):
+                for match_index, match in enumerate(round_data, start=1):
+                    player_1 = match['players'][0]
+                    player_2 = match['players'][1]
+                    completed = "Completed" if match["completed"] else "Not Completed"
+                    winner = match.get("winner", "None")
+                    winner = "Tie Game" if winner is None else winner
+                    data.append({
+                        # 'Round': round_index,
+                        # 'Match': match_index,
+                        'Player 1': player_1,
+                        'Player 2': player_2,
+                        'Winner': winner,
+                    })
+        df = pd.DataFrame(data)
+        print(df) 
+
     def display(self):
         print("Tournament Name: " + self.tournament.name)
         print("Venue Name: " + self.tournament.venue)
@@ -18,20 +37,7 @@ class TournamentView(BaseScreen):
             print(f"\tID: {player.chess_id} \tName: {player.name}")
         if (self.tournament.current_round == 0):
             print("Tournament Completed")
-        else:
-            print("Current Round: " + str(self.tournament.current_round))
-        for round_index, round_data in enumerate(self.tournament.rounds, start=1):
-            print(f"Round {round_index}:")
-            for match_index, match in enumerate(round_data, start=1):
-                players = " vs ".join(match['players'])
-                completed = "Completed" if match["completed"] else "Not Completed"
-                winner = match.get("winner")
-                winner_display = f"Winner: {winner}" if winner else "Tie Game"
-                print(f"  Match {match_index}: {players}")
-                print(f"    Status: {completed}")
-                print(f"    {winner_display}")
-            print()        
-    data = []
+        self.print_rounds()
     
     def get_command(self):
         """Child classes must implement this method. It must return a Command."""
