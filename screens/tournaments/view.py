@@ -1,19 +1,23 @@
 from ..base_screen import BaseScreen
-import pandas as pd
+import pandas as pd # type: ignore
+from models.players_manager import PlayersManager
 
 class TournamentView(BaseScreen):
     """Screen displayed when viewing the tournament menu"""
 
-    def __init__(self, tournament):
+    def __init__(self, tournament, players_manager):
         self.tournament = tournament
+        self.players_manager = players_manager
         pass
 
     def print_rounds(self):
+        print("| Player 1    | Player 2    | Winner        | Player 1 points | Player 2 points |")
+        print("| ----------  | ----------- | ------------- | --------------- | --------------- |")
         data = []
         for round_index, round_data in enumerate(self.tournament.rounds, start=1):
                 for match_index, match in enumerate(round_data, start=1):
-                    player_1 = match['players'][0]
-                    player_2 = match['players'][1]
+                    player_1 = self.players_manager.get_player_from_chess_id(match['players'][0]).name
+                    player_2 = self.players_manager.get_player_from_chess_id(match['players'][1]).name
                     completed = "Completed" if match["completed"] else "Not Completed"
                     winner = match.get("winner", "None")
                     winner = "Tie Game" if winner is None else winner
@@ -24,8 +28,6 @@ class TournamentView(BaseScreen):
                         'Player 2': player_2,
                         'Winner': winner,
                     })
-        df = pd.DataFrame(data)
-        print(df) 
 
     def display(self):
         print("Tournament Name: " + self.tournament.name)

@@ -1,6 +1,6 @@
 from commands import ExitCmd, NoopCmd
 from models import TournamentsManager
-from .tournaments.view import TournamentView
+# from .tournaments.view import TournamentView
 from .tournament_menu import TournamentMenu
 from .base_screen import BaseScreen
 
@@ -12,9 +12,10 @@ class TournamentsMenu(BaseScreen):
         The Tournament (Singular) Menu handles one tournament.
         """
 
-    def __init__(self, data_folder="data/tournaments"):
+    def __init__(self, players_manager, data_folder="data/tournaments"):
         # Load all tournaments into a list
         self.tournament_manager = TournamentsManager()
+        self.players_manager = players_manager
 
     def display(self):
         for idx, tournament in enumerate(self.tournament_manager.get_tournaments(), 1):
@@ -33,7 +34,7 @@ class TournamentsMenu(BaseScreen):
             if value.isdigit():
                 value = int(value)
                 if value in range(1, len(self.tournament_manager.get_tournaments()) + 1):
-                    tournament_menu = TournamentMenu(self.tournament_manager.get_tournament(value -1))
+                    tournament_menu = TournamentMenu(self.tournament_manager.get_tournament(value -1), self.players_manager)
                     tournament_menu.display()
                     pass
             elif value.upper() == "C":

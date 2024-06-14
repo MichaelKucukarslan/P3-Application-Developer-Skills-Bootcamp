@@ -1,4 +1,5 @@
 from commands import ExitCmd, NoopCmd
+from models.players_manager import PlayersManager
 from .tournaments_menu import TournamentsMenu
 from .base_screen import BaseScreen
 
@@ -8,6 +9,7 @@ class MainMenu(BaseScreen):
 
     def __init__(self, clubs):
         self.clubs = clubs
+        self.players_manager = PlayersManager()
 
     def display(self):
         for idx, club in enumerate(self.clubs, 1):
@@ -27,7 +29,7 @@ class MainMenu(BaseScreen):
             elif value.upper() == "C":
                 return NoopCmd("club-create")
             elif value.upper() == "T":
-                tournaments_manager = TournamentsMenu()
+                tournaments_manager = TournamentsMenu(self.players_manager)
                 tournaments_manager.get_command()
             elif value.upper() == "X":
                 return ExitCmd()
