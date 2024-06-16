@@ -1,4 +1,8 @@
 Next steps:
+Progress the tournament forward
+Save json files
+
+6-16-24
 Show Tournament Standings
 
 5-20-24
