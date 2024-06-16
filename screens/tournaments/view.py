@@ -1,6 +1,5 @@
 from ..base_screen import BaseScreen
 import pandas as pd # type: ignore
-from models.players_manager import PlayersManager
 
 class TournamentView(BaseScreen):
     """Screen displayed when viewing the tournament menu"""
@@ -11,32 +10,55 @@ class TournamentView(BaseScreen):
         pass
 
     def print_rounds(self):
-        print("| Player 1    | Player 2    | Winner        | Player 1 points | Player 2 points |")
-        print("| ----------  | ----------- | ------------- | --------------- | --------------- |")
-        data = []
         for round_index, round_data in enumerate(self.tournament.rounds, start=1):
-                for match_index, match in enumerate(round_data, start=1):
-                    player_1 = self.players_manager.get_player_from_chess_id(match['players'][0]).name
-                    player_2 = self.players_manager.get_player_from_chess_id(match['players'][1]).name
-                    completed = "Completed" if match["completed"] else "Not Completed"
-                    winner = match.get("winner", "None")
-                    winner = "Tie Game" if winner is None else winner
-                    data.append({
-                        # 'Round': round_index,
-                        # 'Match': match_index,
-                        'Player 1': player_1,
-                        'Player 2': player_2,
-                        'Winner': winner,
-                    })
+            print() # A space to make it easier to read. 
+            print(f"Round {round_index}")
+            print("| Player 1         | Player 2         | Winner           | Player 1 points  | Player 2 points  |")
+            print("| ---------------  | ---------------- | ---------------- | ---------------- | ---------------- |")
+            for match in round_data:
+                # print(match)
+                match_data = []
+                player_1 = self.tournament.get_player_from_chess_id(match['players'][0])
+                player_2 = self.tournament.get_player_from_chess_id(match['players'][1])
+                completed = "Completed" if match["completed"] else "Not Completed"
+                winner = match.get("winner", "None")
+                winner = "Tie Game" if winner is None else self.tournament.get_player_from_chess_id(winner).player.name
+                self.tournament.calculate_rounds(match)
+                match_data.append(player_1.player.name)
+                match_data.append(player_2.player.name)
+                match_data.append(winner)
+                match_data.append(player_1.points)
+                match_data.append(player_2.points)
+                self.print_match_row(match_data)
+
+    def print_match_row(self, data):
+        length_max = 17
+        pad_char = ' '
+        for item in data:
+            item = str(item)
+            print('| ', end='')
+            if len(item) > length_max:
+                print(item[:length_max], end="")
+            elif len(item) < length_max:
+                print(item.ljust(length_max, pad_char), end="")
+            else:
+                print(item, end="")
+        print('|')
 
     def display(self):
         print("Tournament Name: " + self.tournament.name)
         print("Venue Name: " + self.tournament.venue)
         print("Start Date: " + self.tournament.start_date)
         print("End Date: " + self.tournament.end_date)
-        print("Player ID Numbers:")
+        print("Players in this tournament:")
+        data = []
         for player in self.tournament.players:
-            print(f"\tID: {player.chess_id} \tName: {player.name}")
+            data.append({
+                'ID': player.chess_id,
+                'Name': player.name
+            })
+        df = pd.DataFrame(data)
+        print(df)
         if (self.tournament.current_round == 0):
             print("Tournament Completed")
         self.print_rounds()

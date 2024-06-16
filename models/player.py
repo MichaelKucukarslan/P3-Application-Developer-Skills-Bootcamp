@@ -20,7 +20,7 @@ class Player:
         self.birthday = birthday
 
     def __str__(self):
-        return f"<Here {self.name}>"
+        return f"<{self.name}>"
 
     def __hash__(self):
         """Returns the hash of the object - useful to use the instance as a key in a dictionary or in a set"""
