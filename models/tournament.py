@@ -68,3 +68,6 @@ class TournamentPlayersWrapper:
     
     def __str__(self):
         return f"<{self.player.name}>"
+    
+    def __lt__(self, other):
+        return self.points < other.points

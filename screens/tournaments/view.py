@@ -29,10 +29,20 @@ class TournamentView(BaseScreen):
                 match_data.append(winner)
                 match_data.append(player_1.points)
                 match_data.append(player_2.points)
-                self.print_match_row(match_data)
+                self.print_row_of_info(match_data, 17)
+            print()
+            self.tournament.wrapped_players_with_points.sort(reverse=True)
+            self.print_ranking(self.tournament.wrapped_players_with_points)
+            print()
 
-    def print_match_row(self, data):
-        length_max = 17
+    def print_ranking(self, data):
+        length_max = 12
+        print("| Player      | Points      |")
+        print("| ----------- | ----------- |")
+        for player in self.tournament.wrapped_players_with_points:
+            self.print_row_of_info([player.player.name, str(player.points)], length_max)
+
+    def print_row_of_info(self, data, length_max):
         pad_char = ' '
         for item in data:
             item = str(item)

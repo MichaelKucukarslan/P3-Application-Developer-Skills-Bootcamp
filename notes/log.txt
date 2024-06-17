@@ -4,6 +4,7 @@ Save json files
 
 6-16-24
 Show Tournament Standings
+Got Player ranking to print after matches
 
 5-20-24
 Load tournament with player names
