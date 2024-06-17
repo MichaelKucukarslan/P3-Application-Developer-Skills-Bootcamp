@@ -16,7 +16,6 @@ class TournamentView(BaseScreen):
             print("| Player 1         | Player 2         | Winner           | Player 1 points  | Player 2 points  |")
             print("| ---------------  | ---------------- | ---------------- | ---------------- | ---------------- |")
             for match in round_data:
-                # print(match)
                 match_data = []
                 player_1 = self.tournament.get_player_from_chess_id(match['players'][0])
                 player_2 = self.tournament.get_player_from_chess_id(match['players'][1])
@@ -39,7 +38,7 @@ class TournamentView(BaseScreen):
         length_max = 12
         print("| Player      | Points      |")
         print("| ----------- | ----------- |")
-        for player in self.tournament.wrapped_players_with_points:
+        for player in data:
             self.print_row_of_info([player.player.name, str(player.points)], length_max)
 
     def print_row_of_info(self, data, length_max):
@@ -75,6 +74,20 @@ class TournamentView(BaseScreen):
     
     def get_command(self):
         """Child classes must implement this method. It must return a Command."""
-        # If the tournament is done just display it
-        # If the tournament is NOT done allow to continue it
-    pass
+        keep_asking = True
+        print("View " + str(keep_asking))
+        while keep_asking:
+            # If the tournament is done just display it
+            if self.tournament.completed == True:
+                print("This tournament is complete. You will now be returned to the Tournaments Menu...")
+                keep_asking = False
+            # If the tournament is NOT done allow to continue it
+            if self.tournament.completed == False:
+                print("Do you want to enter the next round of winners? (Y/N)")
+                value = self.input_string()
+                if value.upper() == 'Y':
+                    keep_asking = False
+                    return True
+                if value.upper() == 'N':
+                    keep_asking = False
+                    return False

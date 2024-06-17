@@ -1,5 +1,6 @@
-[x] Show tournaments
 [ ] Set Up a tournament 
 [ ] Add players to said tournament
 [ ] Make a list of all the players then give them numbers to add to tournament (Maybe)
+[ ]Clear player points after looking at a tournament
+[x] Show tournaments
 [x] Install Pandas in the env
