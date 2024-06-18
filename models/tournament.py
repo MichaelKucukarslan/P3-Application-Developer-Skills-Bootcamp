@@ -12,10 +12,7 @@ class Tournament:
         self.end_date = end_date
         self.venue = venue
         self.number_of_rounds = number_of_rounds
-        if current_round:
-            self.current_round = current_round
-        else:
-            self.current_round = 0 
+        self.current_round = current_round if current_round else 0
         self.completed = completed
         self.players = players
         self.finished = finished

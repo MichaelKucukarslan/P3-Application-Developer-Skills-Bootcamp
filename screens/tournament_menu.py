@@ -1,5 +1,5 @@
 from .tournaments.view import TournamentView
-
+from models.round_manager import RoundManager
 class TournamentMenu:
     """
     Tournament Menu will look at individual tournaments.
@@ -18,6 +18,7 @@ class TournamentMenu:
         self.tournament_view.display() 
         value = self.tournament_view.get_command()
         if value:
+            rounds = RoundManager(self.tournament)
             pass
         
     # [ ] Add editing ability
