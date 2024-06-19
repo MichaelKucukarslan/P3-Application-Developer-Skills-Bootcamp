@@ -16,7 +16,7 @@ class TournamentMenu:
 
     def display(self):
         self.tournament_view.display() 
-        value = self.tournament_view.get_command()
+        value = self.tournament_view.get_command() # Asks if user wants to continue tournament (Y/N)
         if value:
             rounds = RoundManager(self.tournament)
             pass
