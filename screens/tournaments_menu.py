@@ -26,7 +26,7 @@ class TournamentsMenu(BaseScreen):
         while keep_asking:
             print("**Tournaments Menu**")
             self.display()
-            print("")
+            print()
             print("Type a number to access a current tournament.")
             print("Type C to create a new tournament.")
             print("Type B to go back.")

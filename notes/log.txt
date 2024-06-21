@@ -1,4 +1,5 @@
 Next steps:
+Make new round
 Progress the tournament forward
 Save json files
 
