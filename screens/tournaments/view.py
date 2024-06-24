@@ -75,7 +75,6 @@ class TournamentView(BaseScreen):
     def get_command(self):
         """Child classes must implement this method. It must return a Command."""
         keep_asking = True
-        print("View " + str(keep_asking))
         while keep_asking:
             # If the tournament is done just display it
             if self.tournament.completed == True:

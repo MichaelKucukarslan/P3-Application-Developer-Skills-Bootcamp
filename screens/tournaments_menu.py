@@ -14,7 +14,7 @@ class TournamentsMenu(BaseScreen):
 
     def __init__(self, players_manager, data_folder="data/tournaments"):
         # Load all tournaments into a list
-        self.tournament_manager = TournamentsManager()
+        self.tournament_manager = TournamentsManager(data_folder)
         self.players_manager = players_manager
 
     def display(self):
@@ -31,7 +31,8 @@ class TournamentsMenu(BaseScreen):
             print("Type C to create a new tournament.")
             print("Type B to go back.")
             value = self.input_string()
-            if value.isdigit():
+            if value.isdigit(): 
+                # Display a tournament
                 value = int(value)
                 if value in range(1, len(self.tournament_manager.get_tournaments()) + 1):
                     tournament_menu = TournamentMenu(self.tournament_manager.get_tournament(value -1), self.players_manager)

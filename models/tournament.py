@@ -1,12 +1,14 @@
 import json
 
 from .player import Player
+from models.round import Round
+from models.printer import Printer
 
 class Tournament:
     """A local tournament"""
     def __init__(self, name=None, start_date=None, end_date=None, venue=None, 
                  number_of_rounds=None, current_round=None, completed=None, 
-                 players=None, finished=None, rounds=None):
+                 players=None, finished=None, rounds=None, file_folder="data/tournaments"):
         self.name = name
         self.start_date = start_date
         self.end_date = end_date
@@ -20,18 +22,18 @@ class Tournament:
         self.wrapped_players_with_points = []
         for player in self.players:
             self.wrapped_players_with_points.append(TournamentPlayersWrapper(player))
+        self.file_folder = file_folder
+        self.printer = Printer()
 
     def calculate_rounds(self, rounds):
         # find the winner
-        # print(rounds)
         winner = 'Tie Game' if rounds['winner'] is None else rounds['winner']
-        # print("Tournament: " + winner)
         # if tie add 0.5 to each player
         if winner == "Tie Game":
             # print(rounds['players'])
             self.add_to_player_points(rounds['players'][0], 0.5)
             self.add_to_player_points(rounds['players'][1], 0.5)
-        # add 1 point to the winner
+        # or add 1 point to the winner
         else:
             self.add_to_player_points(winner, 1.0)
             
@@ -48,12 +50,36 @@ class Tournament:
     # Save file
     def save(self):
         """Serialize the players and save them to the tournament into a JSON file"""
-
-        with open(self.filepath, "w") as fp:
-            json.dump(
-                {"name": self.name, "players": [p.serialize() for p in self.players]},
-                fp,
-            )
+        
+        file_name = ''
+        if self.completed:
+            file_name += '[Completed]'
+        file_name += "".join(self.name.split())
+        filepath = self.file_folder + '/' + file_name + '.json'
+        with open(filepath, 'w') as fp:
+            serialized_self = self.serialize()
+            json.dump(self.serialize(), fp, indent=4)
+        
+    def serialize(self):
+        return {
+            "name": self.name,
+            "dates": {
+                "from": self.start_date,
+                "to": self.end_date
+            },
+            "venue": self.venue,
+            "number_of_rounds": self.number_of_rounds,
+            "current_round": self.current_round,
+            "completed": self.completed,
+            "players": [player.chess_id for player in self.players],
+            "finished": self.finished,
+            "rounds": self.rounds
+        }
+    
+    def create_new_round(self):
+        round = Round()
+        new_round = round.create_next_round(self)
+        self.rounds.append(new_round)
 
 class TournamentPlayersWrapper:
     def __init__(self, player):

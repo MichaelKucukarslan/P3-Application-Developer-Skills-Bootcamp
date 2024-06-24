@@ -1,5 +1,5 @@
 
 
-class RoundsView:
-    def __init__(self, data):
-        self.data = data
+class RoundView:
+    def __init__(self, tournament):
+        self.data = tournament

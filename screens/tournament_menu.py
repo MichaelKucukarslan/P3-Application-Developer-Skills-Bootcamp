@@ -1,5 +1,7 @@
 from .tournaments.view import TournamentView
-from models.round_manager import RoundManager
+from models.printer import Printer
+
+
 class TournamentMenu:
     """
     Tournament Menu will look at individual tournaments.
@@ -12,14 +14,28 @@ class TournamentMenu:
         self.players_manager = players_manager
         self.tournament = tournament
         self.tournament_view = TournamentView(tournament, players_manager)
+        self.printer = Printer()
         pass
 
     def display(self):
-        self.tournament_view.display() 
-        value = self.tournament_view.get_command() # Asks if user wants to continue tournament (Y/N)
-        if value:
-            rounds = RoundManager(self.tournament)
+        self.tournament_view.display()
+        continue_tournament = self.tournament_view.get_command() # Asks if user wants to continue tournament (Y/N)
+        current_round = self.tournament.current_round
+        while continue_tournament:
+            # create a new round with that tournament
+            self.tournament.create_new_round()
+            self.tournament.save()
+            # get the latest round
+            self.print_round(self.tournament.rounds[current_round])
+            # display that round
+            # get the winners of each round
+            print("Who won these matches?")
+            continue_tournament = False
             pass
         
-    # [ ] Add editing ability
+    def print_round(self, rounds):
+        print("| Player 1   | Player 2   |")
+        max_length = 11
+        for item in rounds:
+            self.printer.print_row_of_info(item['players'], max_length)
     
