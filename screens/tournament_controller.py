@@ -1,6 +1,6 @@
 from .tournaments.view import TournamentView
 from models.printer import Printer
-
+from models.round import Round
 
 class TournamentMenu:
     """
@@ -15,6 +15,7 @@ class TournamentMenu:
         self.tournament = tournament
         self.tournament_view = TournamentView(tournament, players_manager)
         self.printer = Printer()
+        self.round = Round()
         pass
 
     def display(self):
@@ -26,7 +27,7 @@ class TournamentMenu:
             self.tournament.create_new_round()
             self.tournament.save()
             # get the latest round
-            self.print_round(self.tournament.rounds[current_round])
+            self.round.print_round(self.tournament.rounds[current_round])
             # display that round
             # get the winners of each round
             print("Who won these matches?")

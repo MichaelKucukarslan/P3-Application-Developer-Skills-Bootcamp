@@ -7,10 +7,10 @@ from .base_screen import BaseScreen
 
 class TournamentsMenu(BaseScreen):
     """
-        Tournaments Menu Screen
-        This is the over world view of all past and current tournaments.
-        The Tournament (Singular) Menu handles one tournament.
-        """
+    Tournaments Menu Screen
+    This is the over world view of all past and current tournaments.
+    The Tournament (Singular) Menu handles one tournament.
+    """
 
     def __init__(self, players_manager, data_folder="data/tournaments"):
         # Load all tournaments into a list
