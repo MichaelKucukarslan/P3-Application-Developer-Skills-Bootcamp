@@ -1,9 +1,9 @@
 from .clubs import ClubCreate, ClubView
-from .main_controller import MainMenu
+from .main_controller import MainController
 from .players import PlayerEdit, PlayerView
-from .tournaments import TournamentView
-from .tournaments_controller import TournamentsMenu 
-from .tournament_controller import TournamentMenu
+from .tournament import TournamentView
+from .tournaments_controller import TournamentsController 
+from .tournament_controller import TournamentController
 
 
-__all__ = ["ClubCreate", "ClubView", "MainMenu", "PlayerView", "TournamentView", "TournamentsMenu", 'TournamentMenu']
+__all__ = ["ClubCreate", "ClubView", "MainController", "PlayerView", "TournamentView", "TournamentsController", 'TournamentController']

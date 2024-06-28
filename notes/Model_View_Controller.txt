@@ -10,6 +10,6 @@ memory.
 The controller will call needed functions to get the user where 
 the user wants to be. 
 
+controller: <type>_controller.py
 model: <type>.py
 view: <type>_view.py
-controller: <type>_controller.py

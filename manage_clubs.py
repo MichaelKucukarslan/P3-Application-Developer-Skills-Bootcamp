@@ -1,16 +1,16 @@
 from commands import ClubListCmd, TournamentListCmd
-from screens import ClubCreate, ClubView, MainMenu, PlayerEdit, PlayerView, TournamentView, TournamentsMenu
+from screens import ClubCreate, ClubView, MainController, PlayerEdit, PlayerView, TournamentView, TournamentsController
 
 
 class App:
     """The main controller for the club management program"""
 
     SCREENS = {
-        "main-menu": MainMenu,
+        "main-menu": MainController,
         "club-create": ClubCreate,
         "club-view": ClubView,
         "tournament-view": TournamentView,
-        "tournament-menu": TournamentsMenu,
+        "tournament-menu": TournamentsController,
         "tournament-list": TournamentListCmd,
         "player-view": PlayerView,
         "player-edit": PlayerEdit,

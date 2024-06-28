@@ -1,5 +1,3 @@
-from .edit import TournamentEdit
-from .view import TournamentView
-from .create import TournamentCreate
+from .view import TournamentsView
 
-__all__ = ['TournamentView', 'TournamentEdit', 'TournamentCreate']
+__all__ = ['TournamentsView']

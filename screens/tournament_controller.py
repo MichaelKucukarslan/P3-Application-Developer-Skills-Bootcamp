@@ -1,8 +1,8 @@
-from .tournaments.view import TournamentView
+from .tournament.view import TournamentView
 from models.printer import Printer
 from models.round import Round
 
-class TournamentMenu:
+class TournamentController:
     """
     Tournament Menu will look at individual tournaments.
     If the tournament is done it will display the results of that

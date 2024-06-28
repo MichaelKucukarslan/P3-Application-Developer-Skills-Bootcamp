@@ -1,11 +1,13 @@
 from commands import ExitCmd, NoopCmd
 from models.players_manager import PlayersManager
-from .tournaments_controller import TournamentsMenu
+from .tournaments_controller import TournamentsController
 from .base_screen import BaseScreen
 
 
-class MainMenu(BaseScreen):
-    """Main menu screen"""
+class MainController(BaseScreen):
+    """Main menu screen
+        This is a given class and will not adhere to my model view controller pattern.
+        """
 
     def __init__(self, clubs):
         self.clubs = clubs
@@ -29,7 +31,7 @@ class MainMenu(BaseScreen):
             elif value.upper() == "C":
                 return NoopCmd("club-create")
             elif value.upper() == "T":
-                tournaments_manager = TournamentsMenu(self.players_manager)
+                tournaments_manager = TournamentsController(self.players_manager)
                 tournaments_manager.get_command()
             elif value.upper() == "X":
                 return ExitCmd()
