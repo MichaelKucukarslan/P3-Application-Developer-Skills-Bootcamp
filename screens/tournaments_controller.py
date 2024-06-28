@@ -1,7 +1,7 @@
 from commands import ExitCmd, NoopCmd
 from models import TournamentsManager
 # from .tournaments.view import TournamentView
-from .tournament_menu import TournamentMenu
+from .tournament_controller import TournamentMenu
 from .base_screen import BaseScreen
 
 

@@ -1,9 +1,11 @@
 import json
+from models.printer import Printer
 
 class Round:
     def __init__(self):
         # self.data = data
         self.rounds = []
+        self.printer = Printer()
 
     def create_next_round(self, tournament):
     # create pairings
@@ -17,7 +19,14 @@ class Round:
                 "completed": False,
                 "winner": None
                 })
+        self.rounds = rounds
         return rounds
+
+    def print_round(self, rounds):
+        print("| Player 1   | Player 2   |")
+        max_length = 11
+        for item in rounds:
+            self.printer.print_row_of_info(item['players'], max_length)
 
     def new_round_to_json(self, rounds):
         self.data["rounds"].append(rounds)

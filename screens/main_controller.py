@@ -1,6 +1,6 @@
 from commands import ExitCmd, NoopCmd
 from models.players_manager import PlayersManager
-from .tournaments_menu import TournamentsMenu
+from .tournaments_controller import TournamentsMenu
 from .base_screen import BaseScreen
 
 
