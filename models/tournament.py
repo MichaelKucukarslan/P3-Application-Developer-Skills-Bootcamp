@@ -50,14 +50,12 @@ class Tournament:
     # Save file
     def save(self):
         """Serialize the players and save them to the tournament into a JSON file"""
-        
         file_name = ''
         if self.completed:
             file_name += '[Completed]'
         file_name += "".join(self.name.split())
         filepath = self.file_folder + '/' + file_name + '.json'
         with open(filepath, 'w') as fp:
-            serialized_self = self.serialize()
             json.dump(self.serialize(), fp, indent=4)
         
     def serialize(self):

@@ -1,4 +1,5 @@
 from ..base_screen import BaseScreen
+from models.printer import Printer
 import pandas as pd # type: ignore
 
 class TournamentView(BaseScreen):
@@ -7,15 +8,16 @@ class TournamentView(BaseScreen):
     def __init__(self, tournament, players_manager):
         self.tournament = tournament
         self.players_manager = players_manager
+        self.printer = Printer()
         pass
 
     def print_rounds(self):
-        for round_index, round_data in enumerate(self.tournament.rounds, start=1):
+        for round_index, round in enumerate(self.tournament.rounds, start=1):
             print() # A space to make it easier to read. 
             print(f"Round {round_index}")
-            print("| Player 1         | Player 2         | Winner           | Player 1 points  | Player 2 points  |")
-            print("| ---------------  | ---------------- | ---------------- | ---------------- | ---------------- |")
-            for match in round_data:
+            round_data = []
+            round_data.append(['Player 1', 'Player 2', 'Winner', "Player 1 points", "Player 2 points"])
+            for match in round:
                 match_data = []
                 player_1 = self.tournament.get_player_from_chess_id(match['players'][0])
                 player_2 = self.tournament.get_player_from_chess_id(match['players'][1])
@@ -28,7 +30,9 @@ class TournamentView(BaseScreen):
                 match_data.append(winner)
                 match_data.append(player_1.points)
                 match_data.append(player_2.points)
-                self.print_row_of_info(match_data, 17)
+                round_data.append(match_data)
+                # self.print_row_of_info(match_data, 17)
+            self.printer.print_rows_of_info(round_data, 17)
             print()
             self.tournament.wrapped_players_with_points.sort(reverse=True)
             self.print_ranking(self.tournament.wrapped_players_with_points)
@@ -36,23 +40,11 @@ class TournamentView(BaseScreen):
 
     def print_ranking(self, data):
         length_max = 12
-        print("| Player      | Points      |")
-        print("| ----------- | ----------- |")
+        ranking_data = []
+        ranking_data.insert(0, ['Player', 'Points'])
         for player in data:
-            self.print_row_of_info([player.player.name, str(player.points)], length_max)
-
-    def print_row_of_info(self, data, length_max):
-        pad_char = ' '
-        for item in data:
-            item = str(item)
-            print('| ', end='')
-            if len(item) > length_max:
-                print(item[:length_max], end="")
-            elif len(item) < length_max:
-                print(item.ljust(length_max, pad_char), end="")
-            else:
-                print(item, end="")
-        print('|')
+            ranking_data.append([player.player.name, str(player.points)])
+        self.printer.print_rows_of_info(ranking_data, length_max)
 
     def display(self):
         print("Tournament Name: " + self.tournament.name)

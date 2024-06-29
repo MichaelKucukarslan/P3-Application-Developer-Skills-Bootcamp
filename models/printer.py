@@ -23,3 +23,12 @@ class Printer:
             else:
                 print(item, end="")
         print('|')
+
+    def print_rows_of_info(self, data, length_max):
+        """Give the printer a title and data. The printer will print a nice table in the consol."""
+        number = length_max - 2
+        dotted_line = '-' * number
+        new_list = [dotted_line] * len(data[0])
+        data.insert(1, new_list)
+        for items in data:
+            self.print_row_of_info(items, length_max)

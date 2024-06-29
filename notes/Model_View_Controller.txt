@@ -5,7 +5,7 @@ the model <type>.py, the view <type>_view.py, and the controller
 <type>_controller.py
 
 The controller will start first and have the model and the view in 
-memory. 
+memory.
 
 The controller will call needed functions to get the user where 
 the user wants to be. 

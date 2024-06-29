@@ -1,7 +1,6 @@
 from commands import ExitCmd, NoopCmd
 from models import Tournaments
 from screens.tournaments import TournamentsView
-# from .tournaments.view import TournamentView
 from .tournament_controller import TournamentController
 from .base_screen import BaseScreen
 
@@ -31,7 +30,7 @@ class TournamentsController(BaseScreen):
                 value = int(value)
                 if value in range(1, len(self.tournament_manager.get_tournaments()) + 1):
                     tournament_menu = TournamentController(self.tournament_manager.get_tournament(value -1), self.players_manager)
-                    tournament_menu.display()
+                    tournament_menu.get_command()
                     pass
             elif value.upper() == "C":
                 # [ ] Create a new tournament
