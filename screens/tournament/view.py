@@ -2,10 +2,14 @@ from ..base_screen import BaseScreen
 from models.printer import Printer
 import pandas as pd # type: ignore
 
+# Passes models
+from models.tournament import Tournament
+from models.players_manager import PlayersManager
+
 class TournamentView(BaseScreen):
     """Screen displayed when viewing the tournament menu"""
 
-    def __init__(self, tournament, players_manager):
+    def __init__(self, tournament: 'Tournament', players_manager: 'PlayersManager'):
         self.tournament = tournament
         self.players_manager = players_manager
         self.printer = Printer()
@@ -31,20 +35,18 @@ class TournamentView(BaseScreen):
                 match_data.append(player_1.points)
                 match_data.append(player_2.points)
                 round_data.append(match_data)
-                # self.print_row_of_info(match_data, 17)
-            self.printer.print_rows_of_info(round_data, 17)
+            self.printer.print_rows_of_info(round_data)
             print()
             self.tournament.wrapped_players_with_points.sort(reverse=True)
             self.print_ranking(self.tournament.wrapped_players_with_points)
             print()
 
     def print_ranking(self, data):
-        length_max = 12
         ranking_data = []
         ranking_data.insert(0, ['Player', 'Points'])
         for player in data:
             ranking_data.append([player.player.name, str(player.points)])
-        self.printer.print_rows_of_info(ranking_data, length_max)
+        self.printer.print_rows_of_info(ranking_data)
 
     def display(self):
         print("Tournament Name: " + self.tournament.name)
@@ -52,14 +54,19 @@ class TournamentView(BaseScreen):
         print("Start Date: " + self.tournament.start_date)
         print("End Date: " + self.tournament.end_date)
         print("Players in this tournament:")
-        data = []
+        tournament_players = []
+        tournament_players.append(['Player IDs', 'Name'])
         for player in self.tournament.players:
-            data.append({
-                'ID': player.chess_id,
-                'Name': player.name
-            })
-        df = pd.DataFrame(data)
-        print(df)
+            tournament_players.append([player.chess_id, player.name])
+        self.printer.print_rows_of_info(tournament_players)
+        # data = []
+        # for player in self.tournament.players:
+        #     data.append({
+        #         'ID': player.chess_id,
+        #         'Name': player.name
+        #     })
+        # df = pd.DataFrame(data)
+        # print(df)
         if (self.tournament.current_round == 0):
             print("Tournament Completed")
         self.print_rounds()
