@@ -6,6 +6,7 @@ class PlayersManager:
     """Players Manager gets all the players from all the clubs"""
 
     def __init__(self, data_folder="data/clubs"):
+        # print("New Player Manager")
         datadir = Path(data_folder)
         self.data_folder = datadir
         self.players = []
@@ -16,7 +17,7 @@ class PlayersManager:
                         data = json.load(fp)
                         for player in data['players']:
                             self.players.append(Player(player['name'], player['email'], player['chess_id'], player['birthday']))
-                        print(data['name'] + " club loaded.")
+                        # print(data['name'] + " club loaded.")
                 except json.JSONDecodeError:
                     print(filepath, "is invalid JSON file.")
 

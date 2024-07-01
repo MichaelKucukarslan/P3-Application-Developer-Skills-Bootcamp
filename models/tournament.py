@@ -75,6 +75,18 @@ class Tournament:
         new_round = round.create_next_round(self)
         self.rounds.append(new_round)
 
+    def update_match(self, data):
+        """Updates match and saves right away. 
+        Given data should give the round, match, and winner. """
+        self.rounds[data[0]][data[1]]['completed'] = True
+        self.rounds[data[0]][data[1]]['winner'] = data[2]
+        self.save()
+
+        pass
+
+    def get_latest_round(self):
+        return(self.rounds[-1])
+
 class TournamentPlayersWrapper:
     def __init__(self, player):
         self.player = player

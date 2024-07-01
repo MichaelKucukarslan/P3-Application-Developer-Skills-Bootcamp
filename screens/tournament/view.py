@@ -1,10 +1,10 @@
 from ..base_screen import BaseScreen
 from models.printer import Printer
-import pandas as pd # type: ignore
 
 # Passes models
 from models.tournament import Tournament
 from models.players_manager import PlayersManager
+
 
 class TournamentView(BaseScreen):
     """Screen displayed when viewing the tournament menu"""
@@ -12,6 +12,7 @@ class TournamentView(BaseScreen):
     def __init__(self, tournament: 'Tournament', players_manager: 'PlayersManager'):
         self.tournament = tournament
         self.players_manager = players_manager
+        print(players_manager)
         self.printer = Printer()
         pass
 
@@ -59,14 +60,6 @@ class TournamentView(BaseScreen):
         for player in self.tournament.players:
             tournament_players.append([player.chess_id, player.name])
         self.printer.print_rows_of_info(tournament_players)
-        # data = []
-        # for player in self.tournament.players:
-        #     data.append({
-        #         'ID': player.chess_id,
-        #         'Name': player.name
-        #     })
-        # df = pd.DataFrame(data)
-        # print(df)
         if (self.tournament.current_round == 0):
             print("Tournament Completed")
         self.print_rounds()
