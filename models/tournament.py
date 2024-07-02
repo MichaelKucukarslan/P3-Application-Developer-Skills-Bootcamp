@@ -92,6 +92,7 @@ class Tournament:
     def get_players_with_points(self):
         return self.wrapped_players_with_points
     
+
 class TournamentPlayersWrapper:
     def __init__(self, player):
         self.player = player
@@ -101,7 +102,7 @@ class TournamentPlayersWrapper:
         self.points = self.points + increment
     
     def __str__(self):
-        return f"<{self.player.name}>"
+        return f"<Tournament Player Wrapper: {self.player.name}>"
     
     def __lt__(self, other):
         return self.points < other.points

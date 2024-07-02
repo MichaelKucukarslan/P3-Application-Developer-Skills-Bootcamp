@@ -11,8 +11,10 @@ class TournamentsView():
         print("**Tournaments Menu**")
 
     def print_tournaments(self, tournaments):
+        data = [['Index', 'Name', 'Start Date', 'Completed']]
         for idx, tournament in enumerate(tournaments, 1):
-            print(idx, tournament.name)
+            data.append([idx, tournament.name, tournament.start_date, tournament.completed])
+        self.printer.print_rows_of_info(data)
 
     def print_menu(self):
         print()

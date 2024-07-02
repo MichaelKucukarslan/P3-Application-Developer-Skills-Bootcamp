@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 
 from .tournament import Tournament
 from models.players_manager import PlayersManager
@@ -7,10 +8,11 @@ class Tournaments:
     def __init__(self, data_folder="data/tournaments"):
         self.player_manager = PlayersManager()
         self.tournaments = []
-        self.file_in_progress = data_folder + "/in-progress.json"
-        self.file_future_tournaments = data_folder + "/completed.json"
-        self.load_json_into_tournaments(self.file_in_progress)
-        self.load_json_into_tournaments(self.file_future_tournaments)
+        directory = Path(data_folder)
+        files = [f for f in directory.iterdir() if f.is_file()]
+        print(files)
+        for file in files:
+            self.load_json_into_tournaments(file)
 
     def load_json_into_tournaments(self, file_name):
         with open(file_name, 'r') as file:
@@ -24,6 +26,7 @@ class Tournaments:
                                     data['completed'], tournament_players ,data['finished'], 
                                     data['rounds'])
             self.tournaments.append(tournament)
+        self.tournaments = self.sort_tournaments(self.tournaments)
 
     def get_tournaments(self):
         return self.tournaments
@@ -38,3 +41,10 @@ class Tournaments:
 
         self.tournaments.append(tournament)
         return tournament
+    
+    def sort_tournaments(self, tournaments):
+        sorted_tournaments = sorted(
+            tournaments,
+            key=lambda t: (t.completed, t.start_date)
+        )
+        return sorted_tournaments
