@@ -1,5 +1,7 @@
 from .base_screen import BaseScreen
 from models.tournament import Tournament
+from screens.tournament import TournamentView
+from models.players_manager import PlayersManager
 from models.round import Round
 from screens.rounds import RoundView
 from models.match import Match 
@@ -36,3 +38,9 @@ class RoundController(BaseScreen):
                 winner = match_controller.get_command()
                 self.tournament.update_match([self.tournament.current_round, match_index, winner])                
             self.tournament.current_round += 1
+            print()
+            print("**New standings**")
+            print()
+            for match in self.round:
+                self.tournament.calculate_rounds(match)
+            self.tournament.create_new_round()

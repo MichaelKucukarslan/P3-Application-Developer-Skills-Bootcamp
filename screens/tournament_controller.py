@@ -4,6 +4,7 @@ from models.tournament import Tournament
 from .tournament.view import TournamentView
 from models.players_manager import PlayersManager
 from .round_controller import RoundController
+
 class TournamentController(BaseScreen):
     """
     Tournament Menu will look at individual tournaments.
@@ -26,5 +27,9 @@ class TournamentController(BaseScreen):
             round_controller.get_command()
             continue_tournament = False
             pass
+        players = self.tournament.get_players_with_points()
+        print(players)
+        self.tournament_view.print_ranking(players)
+
         
     

@@ -23,13 +23,14 @@ class Tournament:
             self.wrapped_players_with_points.append(TournamentPlayersWrapper(player))
         self.file_folder = file_folder
 
-    def calculate_rounds(self, rounds):
+    def calculate_rounds(self, match):
+        """Give a single match to calculate the newest round"""
         # find the winner
-        winner = 'Tie Game' if rounds['winner'] is None else rounds['winner']
+        winner = 'Tie Game' if match['winner'] is None else match['winner']
         # if tie add 0.5 to each player
         if winner == "Tie Game":
-            self.add_to_player_points(rounds['players'][0], 0.5)
-            self.add_to_player_points(rounds['players'][1], 0.5)
+            self.add_to_player_points(match['players'][0], 0.5)
+            self.add_to_player_points(match['players'][1], 0.5)
         # or add 1 point to the winner
         else:
             self.add_to_player_points(winner, 1.0)
@@ -74,6 +75,7 @@ class Tournament:
         round = Round()
         new_round = round.create_next_round(self)
         self.rounds.append(new_round)
+        self.save()
 
     def update_match(self, data):
         """Updates match and saves right away. 
@@ -87,6 +89,9 @@ class Tournament:
     def get_latest_round(self):
         return(self.rounds[-1])
 
+    def get_players_with_points(self):
+        return self.wrapped_players_with_points
+    
 class TournamentPlayersWrapper:
     def __init__(self, player):
         self.player = player

@@ -44,9 +44,10 @@ class TournamentView(BaseScreen):
 
     def print_ranking(self, data):
         ranking_data = []
-        ranking_data.insert(0, ['Player', 'Points'])
         for player in data:
             ranking_data.append([player.player.name, str(player.points)])
+        ranking_data.sort(reverse=True)
+        ranking_data.insert(0, ['Player', 'Points'])
         self.printer.print_rows_of_info(ranking_data)
 
     def display(self):

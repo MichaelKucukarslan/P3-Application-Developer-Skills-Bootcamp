@@ -19,3 +19,6 @@ class RoundView:
             player_2 = self.players_manager.get_player_from_chess_id(player_2)
             data.append([player_1.name, player_2.name])
         self.printer.print_rows_of_info(data)
+
+    def get_continue_round(self):
+        pass
