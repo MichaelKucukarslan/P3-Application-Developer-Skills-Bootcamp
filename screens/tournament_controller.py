@@ -28,7 +28,6 @@ class TournamentController(BaseScreen):
             continue_tournament = False
             pass
         players = self.tournament.get_players_with_points()
-        print(players)
         self.tournament_view.print_ranking(players)
 
         
