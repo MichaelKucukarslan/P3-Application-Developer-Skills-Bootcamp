@@ -6,7 +6,7 @@
     },
     "venue": "Cornville Town Hall",
     "number_of_rounds": 4,
-    "current_round": 2,
+    "current_round": 4,
     "completed": false,
     "players": [
         "LU33889",
@@ -103,7 +103,7 @@
                     "AV07547"
                 ],
                 "completed": true,
-                "winner": "AV07547"
+                "winner": "YJ29085"
             },
             {
                 "players": [
@@ -111,7 +111,7 @@
                     "OH36083"
                 ],
                 "completed": true,
-                "winner": null
+                "winner": "XW31336"
             },
             {
                 "players": [
@@ -119,7 +119,75 @@
                     "OS93227"
                 ],
                 "completed": true,
-                "winner": "OS93227"
+                "winner": "LU33889"
+            }
+        ],
+        [
+            {
+                "players": [
+                    "OU52460",
+                    "PB43166"
+                ],
+                "completed": true,
+                "winner": "OU52460"
+            },
+            {
+                "players": [
+                    "YJ29085",
+                    "AV07547"
+                ],
+                "completed": true,
+                "winner": "YJ29085"
+            },
+            {
+                "players": [
+                    "XW31336",
+                    "OH36083"
+                ],
+                "completed": true,
+                "winner": "XW31336"
+            },
+            {
+                "players": [
+                    "LU33889",
+                    "OS93227"
+                ],
+                "completed": true,
+                "winner": "LU33889"
+            }
+        ],
+        [
+            {
+                "players": [
+                    "OU52460",
+                    "PB43166"
+                ],
+                "completed": false,
+                "winner": null
+            },
+            {
+                "players": [
+                    "YJ29085",
+                    "AV07547"
+                ],
+                "completed": false,
+                "winner": null
+            },
+            {
+                "players": [
+                    "XW31336",
+                    "OH36083"
+                ],
+                "completed": false,
+                "winner": null
+            },
+            {
+                "players": [
+                    "LU33889",
+                    "OS93227"
+                ],
+                "completed": false,
+                "winner": null
             }
         ]
     ]
