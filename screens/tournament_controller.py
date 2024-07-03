@@ -20,6 +20,7 @@ class TournamentController(BaseScreen):
         pass
 
     def get_command(self):
+        self.tournament.reset_player_points()
         self.tournament_view.display()
         continue_tournament = self.tournament_view.get_command() # Asks if user wants to continue tournament (Y/N)
         while continue_tournament:

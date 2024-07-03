@@ -31,7 +31,7 @@ class RoundController(BaseScreen):
     def get_command(self):
         """Returns True if the rounds are done."""
         print("Current Round:" + str(self.tournament.current_round) + " Number of rounds: " + str(self.tournament.number_of_rounds))
-        while self.tournament.current_round < self.tournament.number_of_rounds:
+        while self.tournament.current_round <= self.tournament.number_of_rounds:
             print()
             for match_index, match in enumerate (self.round, 0):
                 match_controller = Match_Controller(match)
@@ -43,4 +43,11 @@ class RoundController(BaseScreen):
             print()
             for match in self.round:
                 self.tournament.calculate_rounds(match)
-            self.tournament.create_new_round()
+            value = self.input_string("Do you want to continue to the next round? ('Y'/'N')")
+            if self.tournament.current_round == self.tournament.number_of_rounds:
+                self.tournament.completed = True
+                break
+            if value.upper() == 'Y' and self.tournament.current_round != self.tournament.number_of_rounds: 
+                self.tournament.create_new_round()
+            else:
+                break

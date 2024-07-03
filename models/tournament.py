@@ -92,7 +92,10 @@ class Tournament:
     def get_players_with_points(self):
         return self.wrapped_players_with_points
     
-
+    def reset_player_points(self):
+        for player in self.wrapped_players_with_points:
+            player.points = 0.0
+            
 class TournamentPlayersWrapper:
     def __init__(self, player):
         self.player = player

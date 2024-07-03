@@ -6,7 +6,7 @@
     },
     "venue": "Cornville Town Hall",
     "number_of_rounds": 4,
-    "current_round": 2,
+    "current_round": 3,
     "completed": false,
     "players": [
         "LU33889",
@@ -86,6 +86,74 @@
                 ],
                 "completed": false,
                 "winner": null
+            }
+        ],
+        [
+            {
+                "players": [
+                    "OU52460",
+                    "PB43166"
+                ],
+                "completed": true,
+                "winner": "OU52460"
+            },
+            {
+                "players": [
+                    "YJ29085",
+                    "AV07547"
+                ],
+                "completed": true,
+                "winner": "YJ29085"
+            },
+            {
+                "players": [
+                    "XW31336",
+                    "OH36083"
+                ],
+                "completed": true,
+                "winner": "XW31336"
+            },
+            {
+                "players": [
+                    "LU33889",
+                    "OS93227"
+                ],
+                "completed": true,
+                "winner": "LU33889"
+            }
+        ],
+        [
+            {
+                "players": [
+                    "OU52460",
+                    "YJ29085"
+                ],
+                "completed": true,
+                "winner": "OU52460"
+            },
+            {
+                "players": [
+                    "XW31336",
+                    "PB43166"
+                ],
+                "completed": true,
+                "winner": "XW31336"
+            },
+            {
+                "players": [
+                    "LU33889",
+                    "AV07547"
+                ],
+                "completed": true,
+                "winner": "LU33889"
+            },
+            {
+                "players": [
+                    "OH36083",
+                    "OS93227"
+                ],
+                "completed": true,
+                "winner": "OH36083"
             }
         ]
     ]

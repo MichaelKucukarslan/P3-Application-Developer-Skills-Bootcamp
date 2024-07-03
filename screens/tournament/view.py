@@ -46,7 +46,7 @@ class TournamentView(BaseScreen):
         ranking_data = []
         for player in data:
             ranking_data.append([player.player.name, str(player.points)])
-        ranking_data.sort(reverse=True)
+        ranking_data.sort(key=lambda x: x[1], reverse=True)
         ranking_data.insert(0, ['Player', 'Points'])
         self.printer.print_rows_of_info(ranking_data)
 
@@ -62,7 +62,7 @@ class TournamentView(BaseScreen):
             tournament_players.append([player.chess_id, player.name])
         self.printer.print_rows_of_info(tournament_players)
         if (self.tournament.current_round == 0):
-            print("Tournament Completed")
+            print("This tournament had been completed. Final results are below.")
         self.print_rounds()
     
     def get_command(self):
@@ -71,7 +71,7 @@ class TournamentView(BaseScreen):
         while keep_asking:
             # If the tournament is done just display it
             if self.tournament.completed == True:
-                print("This tournament is complete. You will now be returned to the Tournaments Menu...")
+                print("This tournament is complete.These are the final results. You will now be returned to the Tournaments Menu...")
                 keep_asking = False
             # If the tournament is NOT done allow to continue it
             if self.tournament.completed == False:

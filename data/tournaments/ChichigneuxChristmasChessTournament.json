@@ -6,7 +6,7 @@
     },
     "venue": "Chichigneux Community Hall",
     "number_of_rounds": 4,
-    "current_round": null,
+    "current_round": 3,
     "completed": true,
     "players": [
         "RY03677",
@@ -99,61 +99,61 @@
             },
             {
                 "players": [
-                    "YQ88272",
-                    "RY03677"
+                    "RY03677",
+                    "AV07547"
                 ],
                 "completed": true,
-                "winner": "YQ88272"
+                "winner": "RY03677"
             },
             {
                 "players": [
-                    "AV07547",
-                    "OU52460"
+                    "CF24301",
+                    "YQ88272"
                 ],
                 "completed": true,
-                "winner": null
+                "winner": "CF24301"
             },
             {
                 "players": [
-                    "DP10300",
-                    "CF24301"
+                    "OU52460",
+                    "DP10300"
                 ],
                 "completed": true,
-                "winner": "DP10300"
+                "winner": "OU52460"
             }
         ],
         [
             {
                 "players": [
                     "PB43166",
-                    "YQ88272"
+                    "RI14529"
                 ],
                 "completed": true,
                 "winner": "PB43166"
             },
             {
                 "players": [
-                    "RI14529",
-                    "RY03677"
-                ],
-                "completed": true,
-                "winner": null
-            },
-            {
-                "players": [
-                    "DP10300",
+                    "RY03677",
                     "AV07547"
                 ],
                 "completed": true,
-                "winner": "AV07547"
+                "winner": "RY03677"
+            },
+            {
+                "players": [
+                    "CF24301",
+                    "YQ88272"
+                ],
+                "completed": true,
+                "winner": "CF24301"
             },
             {
                 "players": [
                     "OU52460",
-                    "CF24301"
+                    "DP10300"
                 ],
                 "completed": true,
-                "winner": null
+                "winner": "OU52460"
             }
         ]
     ]
