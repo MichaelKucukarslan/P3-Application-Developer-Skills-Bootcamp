@@ -1,8 +1,12 @@
-[ ] Advance tournaments
-[ ] Make a list of all the players then give them numbers to add to tournament (Maybe)
+[x] Advance tournaments
+[x] Make a list of all the players then give them numbers to add to tournament (Maybe)
 [ ] Player Search
 [ ] Create new Tournaments
 [ ] Add players to said tournament
-[ ] Clear player points after looking at a tournament
+[x] Clear player points after looking at a tournament
 [x] Show tournaments
 [x] Install Pandas in the env
+[ ] Get main menu to show clubs again once going back from tournaments view
+[ ] Get tournaments to end once all rounds have been entered. current_round goes up to number of rounds
+
+Maybe use whoosh as the Search

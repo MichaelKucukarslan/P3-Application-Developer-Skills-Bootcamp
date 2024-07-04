@@ -8,6 +8,8 @@ class Tournament:
     def __init__(self, name=None, start_date=None, end_date=None, venue=None, 
                  number_of_rounds=None, current_round=None, completed=None, 
                  players=None, finished=None, rounds=None, file_folder="data/tournaments"):
+        if name == None:
+            self.create_new_tournament() # [ ] do this next
         self.name = name
         self.start_date = start_date
         self.end_date = end_date
@@ -23,7 +25,7 @@ class Tournament:
             self.wrapped_players_with_points.append(TournamentPlayersWrapper(player))
         self.file_folder = file_folder
 
-    def calculate_rounds(self, match):
+    def calculate_match(self, match):
         """Give a single match to calculate the newest round"""
         # find the winner
         winner = 'Tie Game' if match['winner'] is None else match['winner']
@@ -41,6 +43,7 @@ class Tournament:
                 return player
         
     def add_to_player_points(self, chess_id, points_to_inc):
+        """Adds points_to_inc to the chess_id given."""
         for player in self.wrapped_players_with_points:
             if player.player.chess_id == chess_id:
                 player.change_points(points_to_inc)
@@ -48,8 +51,6 @@ class Tournament:
     def save(self):
         """Serialize the players and save them to the tournament into a JSON file"""
         file_name = ''
-        if self.completed:
-            file_name += '[Completed]'
         file_name += "".join(self.name.split())
         filepath = self.file_folder + '/' + file_name + '.json'
         with open(filepath, 'w') as fp:
@@ -83,13 +84,21 @@ class Tournament:
         self.rounds[data[0]][data[1]]['completed'] = True
         self.rounds[data[0]][data[1]]['winner'] = data[2]
         self.save()
-
         pass
 
     def get_latest_round(self):
         return(self.rounds[-1])
 
+    def calculate_player_points(self):
+        # print(self.rounds)
+        for round in self.rounds:
+            for match in round:
+                self.calculate_match(match)
+        
+
     def get_players_with_points(self):
+        self.reset_player_points()
+        self.calculate_player_points()
         return self.wrapped_players_with_points
     
     def reset_player_points(self):

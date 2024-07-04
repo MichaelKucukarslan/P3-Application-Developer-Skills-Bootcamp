@@ -20,5 +20,18 @@ class RoundView:
             data.append([player_1.name, player_2.name])
         self.printer.print_rows_of_info(data)
 
+    def print_ranking(self, data):
+        ranking_data = []
+        for player in data:
+            ranking_data.append([player.player.name, str(player.points)])
+        ranking_data.sort(key=lambda x: x[1], reverse=True)
+        ranking_data.insert(0, ['Player', 'Points'])
+        self.printer.print_rows_of_info(ranking_data)
+
+    def print_completed_tournament(self, data):
+        print()
+        print("The tournament is over. Here are the final standings:")
+        print()
+        self.print_ranking(data)
     def get_continue_round(self):
         pass

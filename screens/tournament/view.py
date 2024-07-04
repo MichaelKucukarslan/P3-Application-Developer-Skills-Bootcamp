@@ -29,7 +29,7 @@ class TournamentView(BaseScreen):
                 completed = "Completed" if match["completed"] else "Not Completed"
                 winner = match.get("winner", "None")
                 winner = "Tie Game" if winner is None else self.tournament.get_player_from_chess_id(winner).player.name
-                self.tournament.calculate_rounds(match)
+                self.tournament.calculate_match(match)
                 match_data.append(player_1.player.name)
                 match_data.append(player_2.player.name)
                 match_data.append(winner)
