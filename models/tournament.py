@@ -57,6 +57,7 @@ class Tournament:
             json.dump(self.serialize(), fp, indent=4)
         
     def serialize(self):
+        print("Is it done? " + str(self.completed))
         return {
             "name": self.name,
             "dates": {

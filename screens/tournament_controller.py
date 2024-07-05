@@ -13,9 +13,11 @@ class TournamentController(BaseScreen):
     want to input the next rounds winners. 
     """
 
-    def __init__(self, tournament: Tournament, players_manager: PlayersManager):
+    def __init__(self, players_manager: PlayersManager, tournament: Tournament = None):
         self.players_manager = players_manager
         self.tournament = tournament
+        if self.tournament == None:
+            print("create a new tournament")
         self.tournament_view = TournamentView(tournament, players_manager)
         pass
 
