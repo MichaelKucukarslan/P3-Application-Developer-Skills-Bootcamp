@@ -2,6 +2,7 @@ from ..base_screen import BaseScreen
 
 from datetime import datetime
 
+
 class TournamentEdit(BaseScreen):
     """Screen displayed when creating a club"""
 
@@ -22,4 +23,3 @@ class TournamentEdit(BaseScreen):
         end_date = datetime(year, month, day)
         # Adding players is done in the next view
         # Calculating rounds is done after players have been entered
-

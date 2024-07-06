@@ -2,6 +2,7 @@ from models.printer import Printer
 from models.round import Round
 from models.players_manager import PlayersManager
 
+
 class RoundView:
     def __init__(self, round: Round):
         self.printer = Printer()
@@ -33,5 +34,6 @@ class RoundView:
         print("The tournament is over. Here are the final standings:")
         print()
         self.print_ranking(data)
+
     def get_continue_round(self):
         pass

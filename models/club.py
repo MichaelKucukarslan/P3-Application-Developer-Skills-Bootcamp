@@ -14,7 +14,8 @@ class ChessClub:
     def __init__(self, filepath=None, name=None):
         """The constructor works in two ways:
         - if the filepath is provided, it loads data from JSON
-        - if it is not but a name is provided, it creates a new club (and a new JSON file)
+        - if it is not but a name is provided,
+        it creates a new club (and a new JSON file)
         """
 
         self.name = name
@@ -30,7 +31,8 @@ class ChessClub:
                     Player(**player_dict) for player_dict in data["players"]
                 ]
         elif not filepath:
-            # We did not have a file, so we are going to create it by running the save method
+            # We did not have a file,
+            # so we are going to create it by running the save method
             self.save()
 
     def save(self):
@@ -38,12 +40,16 @@ class ChessClub:
 
         with open(self.filepath, "w") as fp:
             json.dump(
-                {"name": self.name, "players": [p.serialize() for p in self.players]},
+                {"name": self.name,
+                 "players": [p.serialize() for p in self.players]},
                 fp,
             )
 
     def create_player(self, **kwargs):
-        """Utility method to create a new player instance and add it to the club"""
+        """
+        Utility method to create a new player
+        instance and add it to the club
+        """
 
         player = Player(**kwargs)
         self.players.append(player)
@@ -51,7 +57,10 @@ class ChessClub:
         return player
 
     def update_player(self, player, **kwargs):
-        """Utility method to update a player instance based on arguments provided"""
+        """
+        Utility method to update a player
+        instance based on arguments provided
+        """
 
         if player not in self.players:
             raise RuntimeError(f"Player {player} not in club {self.name}!")

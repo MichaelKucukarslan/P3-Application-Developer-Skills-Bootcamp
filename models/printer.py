@@ -12,33 +12,36 @@ class Printer:
             if len(item) < width:
                 print(item.ljust(width, pad_char), end='')
             else:
-                print(item[:width], end='')  # Truncate the item if it's too long
+                # Truncate the item if it's too long
+                print(item[:width], end='')
         print('|')
-    
+
     def get_longest_string_length_per_column(self, data):
-        # Initialize a list with zeros, having length equal to the number of columns
+        # Initialize a list with zeros,
+        # having length equal to the number of columns
         max_lengths = [0] * len(data[0])
-        
-        # Iterate over each row and each column to find the max length of each column
+
+        # Iterate over each row and
+        # each column to find the max length of each column
         for row in data:
             for i, item in enumerate(row):
                 max_lengths[i] = max(max_lengths[i], len(str(item)))
-        
         return max_lengths
-    
+
     def print_rows_of_info(self, data):
-        """Give the printer a title and data. 
+        """Give the printer a title and data.
         The printer will print a nice table in the console.
         The table will be automatically sized to avoid splitting of strings."""
         column_widths = self.get_longest_string_length_per_column(data)
         column_widths = [width + 1 for width in column_widths]  # Add padding
-        
+
         # Create a dotted line row
         new_list = ['-' * width for width in column_widths]
         data.insert(1, new_list)
-        
+
         for items in data:
             self.print_row_of_info(items, column_widths)
+
 
 def get_longest_string_length(nested_list):
     def flatten(lst):

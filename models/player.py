@@ -14,7 +14,8 @@ class Player:
         self.email = email
         self.chess_id = chess_id
 
-        # The class uses a private attribute for the birthdate (datetime format)
+        # The class uses a private attribute
+        # for the birthdate (datetime format)
         self._birthdate = None
         # And a public one with a getter/setter for the birthday (str)
         self.birthday = birthday
@@ -23,7 +24,8 @@ class Player:
         return f"<{self.name}>"
 
     def __hash__(self):
-        """Returns the hash of the object - useful to use the instance as a key in a dictionary or in a set"""
+        """Returns the hash of the object
+        - useful to use the instance as a key in a dictionary or in a set"""
         return hash((self.name, self.email, self.chess_id, self.birthdate))
 
     def __eq__(self, other):
@@ -40,7 +42,8 @@ class Player:
 
     @property
     def birthday(self):
-        """Property to get the birthday (string) from the birthdate (datetime)"""
+        """Property to get the birthday
+        (string) from the birthdate (datetime)"""
         return self.birthdate.strftime(self.DATE_FORMAT)
 
     @birthday.setter
@@ -51,7 +54,10 @@ class Player:
     def serialize(self):
         """Serialize the instance in a format compatible with JSON"""
 
-        data = {attr: getattr(self, attr) for attr in ("name", "email", "chess_id")}
+        data = {attr: getattr(self, attr) for attr in ("name",
+                                                       "email",
+                                                       "chess_id"
+                                                       )}
         # We make sure to use the str representation of the date
         # datetime is natively serializable in JSON
         data["birthday"] = self.birthday

@@ -9,26 +9,52 @@ from models.players_manager import PlayersManager
 class TournamentView(BaseScreen):
     """Screen displayed when viewing the tournament menu"""
 
-    def __init__(self, tournament: 'Tournament', players_manager: 'PlayersManager'):
+    def __init__(
+        self,
+        tournament: 'Tournament',
+        players_manager: 'PlayersManager'
+    ):
+        self.printer = Printer()
         self.tournament = tournament
         self.players_manager = players_manager
-        print(players_manager)
-        self.printer = Printer()
         pass
 
     def print_rounds(self):
         for round_index, round in enumerate(self.tournament.rounds, start=1):
-            print() # A space to make it easier to read. 
+            print()  # A space to make it easier to read.
             print(f"Round {round_index}")
             round_data = []
-            round_data.append(['Player 1', 'Player 2', 'Winner', "Player 1 points", "Player 2 points"])
+            round_data.append(
+                [
+                    'Player 1',
+                    'Player 2',
+                    'Winner',
+                    "Player 1 points",
+                    "Player 2 points"
+                ]
+            )
             for match in round:
                 match_data = []
-                player_1 = self.tournament.get_player_from_chess_id(match['players'][0])
-                player_2 = self.tournament.get_player_from_chess_id(match['players'][1])
-                completed = "Completed" if match["completed"] else "Not Completed"
+                player_1 = self.tournament.get_player_from_chess_id(
+                    match['players'][0]
+                    )
+                player_2 = self.tournament.get_player_from_chess_id(
+                    match['players'][1]
+                    )
+                completed = (
+                    "Completed"
+                    if match["completed"]
+                    else "Not Completed"
+                    )
                 winner = match.get("winner", "None")
-                winner = "Tie Game" if winner is None else self.tournament.get_player_from_chess_id(winner).player.name
+                winner = (
+                    "Tie Game"
+                    if winner is None
+                    else (
+                        self.tournament.get_player_from_chess_id(winner)
+                        .player.name
+                    )
+                )
                 self.tournament.calculate_match(match)
                 match_data.append(player_1.player.name)
                 match_data.append(player_2.player.name)
@@ -51,10 +77,10 @@ class TournamentView(BaseScreen):
         self.printer.print_rows_of_info(ranking_data)
 
     def display(self):
-        print("Tournament Name: " + self.tournament.name)
-        print("Venue Name: " + self.tournament.venue)
-        print("Start Date: " + self.tournament.start_date)
-        print("End Date: " + self.tournament.end_date)
+        print("Tournament Name: " + str(self.tournament.name))
+        print("Venue Name: " + str(self.tournament.venue))
+        print("Start Date: " + str(self.tournament.start_date))
+        print("End Date: " + str(self.tournament.end_date))
         print("Players in this tournament:")
         tournament_players = []
         tournament_players.append(['Player IDs', 'Name'])
@@ -62,19 +88,28 @@ class TournamentView(BaseScreen):
             tournament_players.append([player.chess_id, player.name])
         self.printer.print_rows_of_info(tournament_players)
         if (self.tournament.current_round == 0):
-            print("This tournament had been completed. Final results are below.")
+            print(
+                "This tournament had been completed. "
+                "Final results are below."
+                )
         self.print_rounds()
-    
+
     def get_command(self):
-        """Child classes must implement this method. It must return a Command."""
+        """
+        Child classes must implement this method.
+        It must return a Command.
+        """
         keep_asking = True
         while keep_asking:
             # If the tournament is done just display it
-            if self.tournament.completed == True:
-                print("This tournament is complete.These are the final results. You will now be returned to the Tournaments Menu...")
+            if self.tournament.completed is True:
+                print(
+                    "This tournament is complete.These are the final results. "
+                    "You will now be returned to the Tournaments Menu..."
+                )
                 keep_asking = False
             # If the tournament is NOT done allow to continue it
-            if self.tournament.completed == False:
+            if self.tournament.completed is False:
                 print("Do you want to enter the next round of winners? (Y/N)")
                 value = self.input_string()
                 if value.upper() == 'Y':

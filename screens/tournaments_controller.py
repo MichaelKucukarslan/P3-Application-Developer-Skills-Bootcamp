@@ -22,18 +22,25 @@ class TournamentsController(BaseScreen):
         keep_asking = True
         while keep_asking:
             self.tournaments_view.print_title()
-            self.tournaments_view.print_tournaments(self.tournament_manager.get_tournaments())
+            self.tournaments_view.print_tournaments(
+                self.tournament_manager.get_tournaments()
+            )
             self.tournaments_view.print_menu()
             value = self.input_string()
-            if value.isdigit(): 
+            if value.isdigit():
                 # Display a tournament
                 value = int(value)
-                if value in range(1, len(self.tournament_manager.get_tournaments()) + 1):
-                    tournament_menu = TournamentController(self.players_manager, self.tournament_manager.get_tournament(value -1))
+                tournaments_count = len(
+                    self.tournament_manager.get_tournaments()
+                ) + 1
+                if value in range(1, tournaments_count):
+                    tournament_menu = TournamentController(
+                        self.players_manager,
+                        self.tournament_manager.get_tournament(value - 1)
+                    )
                     tournament_menu.get_command()
                     pass
             elif value.upper() == "C":
-                # [ ] Create a new tournament
                 tournament_menu = TournamentController(self.players_manager)
                 return NoopCmd("tournament-menu")
             elif value.upper() == "B":
