@@ -32,12 +32,12 @@ class TournamentCreateView:
         self.tournament.completed = False
         # Add players
         self.tournament.players = []
-        # self.ask_for_players()
+        self.ask_for_players()
         # [ ] For testing; Remove when done.
-        self.ask_for_players("LU33889")
-        self.ask_for_players("YJ29085")
-        self.ask_for_players("PB43166")
-        self.ask_for_players("XW31336")
+        # self.ask_for_players("LU33889")
+        # self.ask_for_players("YJ29085")
+        # self.ask_for_players("PB43166")
+        # self.ask_for_players("XW31336")
         self.tournament.create_new_round()
         self.tournament.save()
 
@@ -47,22 +47,54 @@ class TournamentCreateView:
             self.tournament.players.append(player)
             return
         more_players = True
+        print("Players can only be added by Chess IDs. "
+              "If you enter a name it will return a list of names and IDs. "
+              "You can then input the ID to add the player. "
+              "Chess IDS are in the format AA11111"
+              )
         print("What player do you want to add?")
-        print(
-            "You can enter a player name or "
-            "a Chess ID in the format AA11111"
-            )
         while more_players:
-            user_input = input("Name or Chess ID")
+            user_input = input("Name or Chess ID:\n")
             possible_player = self.get_player(user_input)
             if possible_player is not None:
                 self.tournament.players.append(possible_player)
             else:
+                player_search =  self.player_manager.search_player_by_name(
+                    user_input
+                )
+                player_search_print = []
+                player_search_print.append(['Index', 'Name', 'Chess ID'])
+                for index, player in enumerate(player_search, start=1):
+                    player_search_print.append([index,
+                                                player.name,
+                                                player.chess_id]
+                                            )
+                self.printer.print_rows_of_info(player_search_print)
+                # print("Pick a number to add the player to the tournament.")
+                user_input = self.get_int_from_string("Pick a number to add the player to the tournament.")
+                if type(user_input) is int:
+                    if 1 <= int(user_input) <= len(player_search):
+                        possible_player = self.get_player(player_search[user_input - 1].chess_id)
+                        if possible_player is not None:
+                            self.tournament.players.append(possible_player)
+                else:
+                    print("Index out of range")
                 pass
             user_input = TournamentCreateView.get_yes_or_no(
                 "Do you still want to add more players? Y/N"
                 )
             more_players = True if user_input == 'Y' else False
+
+    @staticmethod
+    def get_int_from_string(prompt):
+        user_input = input(prompt)
+        try:
+            # Try to convert the input to an integer
+            user_input_as_int = int(user_input)
+            return user_input_as_int
+        except ValueError:
+            # If conversion fails, return the original string
+            return user_input
 
     @staticmethod
     def get_yes_or_no(prompt):

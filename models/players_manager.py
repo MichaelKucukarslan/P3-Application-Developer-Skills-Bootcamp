@@ -29,13 +29,19 @@ class PlayersManager:
                 except json.JSONDecodeError:
                     print(filepath, "is invalid JSON file.")
 
-    """Gets all the players in all the clubs"""
     def get_players(self):
+        """Gets all the players in all the clubs"""
         return self.players
 
-    """Find players by chess_id"""
     def get_player_from_chess_id(self, id):
+        """Find players by chess_id"""
         for player in self.players:
             if player.chess_id == id:
                 return player
         return None
+
+    def search_player_by_name(self, name):
+        """Returns a list of players that match the name"""
+        return [player for player in self.players
+                if name.lower() in player.name.lower()
+                ]
